@@ -1,0 +1,193 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>The WT Store</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/album.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+        <header>
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <a class="navbar-brand" href="#">The WT Store</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+        
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/cart">Cart <span class="sr-only">(current)</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+    <main role="main">
+        <section class="mt-5 text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading text-primary">{{product['name']}}</h1>
+               
+            </div>
+        </section>
+      <div class="album py-5 bg-light">
+        <div class="container">
+
+          <div class="row d-flex justify-content-center " >
+              
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" style="width:348px !important" src="{{product['image_url']}}" alt="Card image cap" height="233px" width="348px">
+                <div class="card-body">
+                  <h5 class="card-title">{{product['name']}}</h5>
+                  <p class="card-text"> {{!product['description']}} </p>
+                  <input type="hidden" id = "item_id" value = "{{product['id']}}"/>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                            <br>
+                            <button type="button" id= "minus" class="btn btn-sm btn-outline-primary">-</button>
+                            <button type="button" id="number" class="btn btn-sm btn-outline-secondary"></button>
+                            <button type="button" id= "plus" class="btn btn-sm btn-outline-primary">+</button>  
+                            &nbsp;&nbsp;&nbsp;&nbsp;    
+                      <!-- <a type="button" href="/cart/{{product['id']}}" class="btn btn-sm btn-outline-primary">Add to cart</a> -->
+                      <!-- <button type="button" id= "add_to_cart" class="btn btn-sm btn-outline-primary">Add to cart</button> -->
+                      
+                      
+                    </div>
+                    <span>
+                    <small class="text-muted">$</small>
+                    <small class="text-muted" id = "cost">{{product['unit_cost']}}</small>
+                  </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Form-->
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                  
+                  <div class="card-body">
+                    <form action= "/cart" method="POST" class="px-2 ">
+                      <div class="form-group row">
+                          <label for="product" class="col-4 col-form-label">Product ID</label>
+                            <input id="product" name="product" placeholder="Product ID"
+                             value = "{{product['id']}}" class="form-control" type="text" readonly/>    
+                        </div>
+                          <div class="form-group row">
+                            <label for="name" class="col-4 col-form-label">Name</label>
+                              <input id="name" name="name" placeholder="Name"
+                               value = "{{product['name']}}" class="form-control" type="text" readonly/>    
+                          </div>
+                          <div class="form-group row">
+                              <label for="quantity" class="col-4 col-form-label">Quantity</label>
+                                <input id="form_quantity" name="quantity" placeholder="quantity"
+                                 value = "1" class="form-control" type="text" readonly/>    
+                          </div>
+                          <div class="form-group row">
+                              <label for="cost" class="col-4 col-form-label">Cost</label>
+                                <input id="form_cost" name="cost" placeholder="quantity"
+                                 value = "{{product['unit_cost']}}" class="form-control" type="text" readonly/>    
+                          </div>
+
+                        <button type="submit" class= "btn btn-primary" >Add to cart</button>
+
+                    </form>
+              
+                    
+                    
+                      
+                    
+                  </div>
+                </div>
+              </div>
+           
+           
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>Web Tech &copy; 2019</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <script>
+      $(document).ready(function(){
+       var q = 1
+       unit_cost = parseFloat($("#cost").html());
+       id = ($("#item_id").val());
+       console.log(id)
+       $("#number").html(q)
+        $("#plus").click(function(){
+          q=q+1
+          cost = q*unit_cost
+          $("#number").html(q)
+          $("#form_quantity").val(q)
+          $("#cost").html(cost.toFixed(2))
+          $("#form_cost").val(cost.toFixed(2))
+        });
+        $("#minus").click(function(){
+          q=q-1
+          if (q<=0){
+            q =1
+            $(this).attr("disabled",disabled);
+          }
+          cost = q*unit_cost
+          $("#number").html(q)
+          $("#cost").html(cost.toFixed(2))
+          $("#form_cost").val(cost.toFixed(2))
+          $("#form_quantity").val(q)
+        });
+
+        $("#add_to_cart").click(function(){
+                    $.ajax({
+                type: "POST",
+                url: "/cart",
+                data: {product:id,quantity:q},
+                  }).done(function(result){
+                    alert("item added to cart ")
+                    });
+        })
+
+      })
+    </script>
+    
+  </body>
+</html>
